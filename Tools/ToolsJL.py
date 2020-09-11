@@ -34,3 +34,24 @@ def missing_char(str, n):
     #missing_char('kitten', 0) → 'itten'
     #missing_char('kitten', 4) → 'kittn'
 
+
+
+#######################
+#for if the last integer or first integer of a list is 6
+
+def first_last6(nums):
+  #if (nums[len(nums) -1] == 6):
+    #return True
+  #if (nums[0] == 6):
+    #return True
+    
+ 
+  #return False
+  
+  if (nums[len(nums) -1] == 6 or nums[0] ==6):
+    return True
+    
+ 
+  return False
+
+
