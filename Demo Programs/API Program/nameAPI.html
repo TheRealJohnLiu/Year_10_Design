@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>First Name:</p>
+    <input type="text" id ="fname"> 
+
+    <p>Last Name:</p>
+    <input type = "text" id = "lname">
+
+    <button type = "button" onclick = "process()"> Submit </button>
+
+
+    <script>
+
+
+        function process() {
+
+            result = [1,2,3]
+
+            var fname = document.getElementById("fname").value
+            var lname = document.getElementById("lname").value
+            console.log(fname + " " + lname)
+
+            fetch("https://jsonplaceholder.typicode.com/photos")
+            .then((resp) => resp.json()) // Transform the data into json
+            .then(function(data) {
+        
+            
+            result = data
+            console.log("f=",result)
+
+            });
+            console.log("*=",result)
+
+        }
+
+    </script>
+        
+
+</body>
+</html>
