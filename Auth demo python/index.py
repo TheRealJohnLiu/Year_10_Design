@@ -1,8 +1,19 @@
 import tkinter as tk
 
+uNames = ["user1@test.com"]
+uPwords = ["pword1"]
+active = [""]
+
 def checkCred(*arg):
 
     print("checking")
+
+
+
+
+for i in rang(0,len(uNames),1):
+    if (uNames[i] == u):
+        if (pWords == p)
 
 root = tk.Tk()
 

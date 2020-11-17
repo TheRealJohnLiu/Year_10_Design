@@ -1,4 +1,4 @@
-/*
+/* 
  * Made by Erik Terwan
  * 24th of November 2015
  * MIT License
@@ -14,18 +14,18 @@
  body
  {
    margin: 0;
-   padding: 0;
+   padding: 40px;
    
    /* make it look decent enough */
-   background: #B8E1FF;
+   background: #B8E1FF !IMPORTANT;
    color: #232323;
    font-family: "Avenir Next", "Avenir", sans-serif;
  }
  
- #menuToggle
+ #menubob
  {
    display: block;
-   position: absolute;
+   position: fixed;
    top: 50px;
    left: 50px;
    
@@ -35,7 +35,7 @@
    user-select: none;
  }
  
- #menuToggle a
+ #menubob a
  {
    text-decoration: none;
    color: #232323;
@@ -43,13 +43,13 @@
    transition: color 0.3s ease;
  }
  
- #menuToggle a:hover
+ #menubob a:hover
  {
    color: tomato;
  }
  
  
- #menuToggle input
+ #menubob input
  {
    display: block;
    width: 40px;
@@ -69,7 +69,7 @@
  /*
   * Just a quick hamburger
   */
- #menuToggle span
+ #menubob span
  {
    display: block;
    width: 33px;
@@ -90,12 +90,12 @@
                opacity 0.55s ease;
  }
  
- #menuToggle span:first-child
+ #menubob span:first-child
  {
    transform-origin: 0% 0%;
  }
  
- #menuToggle span:nth-last-child(2)
+ #menubob span:nth-last-child(2)
  {
    transform-origin: 0% 100%;
  }
@@ -104,7 +104,7 @@
   * Transform all the slices of hamburger
   * into a crossmark.
   */
- #menuToggle input:checked ~ span
+ #menubob input:checked ~ span
  {
    opacity: 1;
    transform: rotate(45deg) translate(-2px, -1px);
@@ -114,7 +114,7 @@
  /*
   * But let's hide the middle one.
   */
- #menuToggle input:checked ~ span:nth-last-child(3)
+ #menubob input:checked ~ span:nth-last-child(3)
  {
    opacity: 0;
    transform: rotate(0deg) scale(0.2, 0.2);
@@ -123,7 +123,7 @@
  /*
   * Ohyeah and the last one should go the other direction
   */
- #menuToggle input:checked ~ span:nth-last-child(2)
+ #menubob input:checked ~ span:nth-last-child(2)
  {
    transform: rotate(-45deg) translate(0, -1px);
  }
@@ -132,7 +132,7 @@
   * Make this absolute positioned
   * at the top left of the screen
   */
- #menu
+ #menus
  {
    position: absolute;
    width: 300px;
@@ -152,7 +152,7 @@
    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
  }
  
- #menu li
+ #menus li
  {
    padding: 10px 0;
    font-size: 22px;
@@ -161,13 +161,34 @@
  /*
   * And let's slide it in from the left
   */
- #menuToggle input:checked ~ ul
+ #menubob input:checked ~ ul
  {
    transform: none;
  }
 
  .topright {
-  position: absolute;
+  position: fixed;
   top: 8px;
   right: 16px;
-  font-size: 18px;
+  font-size: 14px; */
+ }
+
+  .bob {
+    top: 100px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 500px;
+
+  }
+  
+  .bob img {
+    width: 50%;
+    display: inline-block;
+  }
+
+  .bob span {
+    font-size: 20px;
+    width: 40%;
+    display: inline-block;
+  }

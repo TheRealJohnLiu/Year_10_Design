@@ -31,5 +31,7 @@ function checkCred(u, p){
     return false; //if false, user and password dont match or not in system. 
 }
 
+
+
 result = checkCred("user@test.com","123abc")
 console.log(result)
