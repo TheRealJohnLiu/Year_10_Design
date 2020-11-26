@@ -1,103 +1,140 @@
-// db = firebase.firestore()
+news()
+async function news() {
+  var url = 'http://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
+  'q=NHL&' +
+  'sortBy=popularity&' +
+  'apiKey=a42e7594bbe2463589399dec9e9f0c01';
+  
+  var req = new Request(url);
+  response = await fetch(req);
+  response = await response.json()
 
-// function checkNews() {
- 
-//     db.collection('app').doc("events").get().then(function(doc) {
-//         firebasedate = doc.data().news.toDate()
-//         currentdate = new Date()
-//         var diffMinutes = parseInt((currentdate - firebasedate) / (1000 * 60), 10); 
-//         if (diffMinutes > 15) {
-            
-//             $.getJSON("https://gnews.io/api/v3/search?q=NHL&token=680ac56e2ada01d1bfa9bf67ec40bb40&max=50&lang=en", function( json ) {
-            
-//             NEWS = json
-//             buildNews(NEWS)
+  buildNews(response.articles)
+}
 
-//             db.collection("app").doc('events').update({
-//                 newscache: NEWS,
-//                 news: currentdate
-//             })
-//         });
+function buildNews(articles) {
+  console.log(articles);
+  newsData = {}
+  newsUrl = {}
+  for (let i = 0; i < articles.length; i++) {
+    const article = articles[i];
+    var a = document.createElement('div')
+    newsData[i] = article.description
+    newsUrl[i] = article.url
+    a.innerHTML = `
+      <button data-toggle="modal" data-target="#exampleModal" onclick="showNews('${i}')" class="btn btn-light my-1" type="button" >${article.title}</button>
+      <br>
+      <img src='${article.urlToImage}'>
+      <p class="hidden" id="${i}text">${article.description}</p>
+    `
+    // <div>The Flash/div>
 
-//         }
-//         else {
-//             db.collection("app").doc('events').get().then(function(doc) {
-//                 NEWS = doc.data().newscache
-//                 buildNews(NEWS)
-//             })
-//         }    
-        
-//     })
+    document.getElementById('news').appendChild(a) //// :D 
+
+  }
+}
+
+function showNews(id) {
+  $('#newscontent').html(`${newsData[id]} <br><br> <a href="${newsUrl[id]}">${newsUrl[id]}</a>`)
+}
+
+//---------------------------------------------------------------------------------
+// hockey()
+// async function hockey() {
+//   var url = 'https://statsapi.web.nhl.com/api/v1/teams';
+  
+//   var req = new Request(url);
+//   response = await fetch(req);
+//   response = await response.json()
+
+//   buildHockey(response.name)
 // }
 
-// function buildNews(NEWS) {
-//     $('#articles').empty()
-//         for (let i = 0; i < NEWS.articles.length; i++) {
-//             article = NEWS.articles[i];
+// function buildHockey(name) {
+//   console.log(name);
+//   hockeyData = {}
+//   for (let i = 0; i < teams.length; i++) {
+//     const name = name[i];
+//     var a = document.createElement('div')
+//     hockeyData[i] = name.id
+//     a.innerHTML = `
+//       <button data-toggle="modal" data-target="#exampleModal" onclick="showHockey('${i}')" class="btn btn-light my-1" type="button" >${teams.name}</button>
+//       <br>
+//     `
+//     // <div>The Flash/div>
 
-//             e = document.createElement('div')
-//             e.classList.add('card')
-//             e.classList.add('newscard')
-//             e.classList.add('animated')
-//             e.classList.add('fadeInUp')
-//             e.classList.add('card-body')
-//             viewFunc = "viewArticle('" + i + "')"
-//             e.innerHTML = '<div class="content"><h4>' + article.title + '</h4> <button onclick="' + viewFunc + '" class="eon-text">More Info</button></div>'
+//     document.getElementById('hockey').appendChild(a) //// :D 
 
-//             document.getElementById('articles').appendChild(e)                    
-//         }
-//         addWaves()
-//         interval = window.setInterval(function() {
-//             resizeAllGridItems()
-//         }, 500)
+//   }
 // }
 
-// function viewArticle(num) {
-//     $('#newsmodal').modal('toggle')
-
-//     document.getElementById('newstitle').innerHTML = NEWS.articles[num].title
-//     document.getElementById('newsdate').innerHTML = NEWS.articles[num].publishedAt
-//     document.getElementById('newsdescription').innerHTML = NEWS.articles[num].description
-//     document.getElementById('newsbanner').src = NEWS.articles[num].image
-//     document.getElementById('newsbutton').innerHTML = NEWS.articles[num].source.name
-//     document.getElementById('newsbutton').onclick = function() {
-//         window.open(NEWS.articles[num].source.url)
-//     }
-    
-// }
-
-// function closenews() {
-//     $('#newsmodal').modal('toggle')
+// function showockey(id) {
+//   $('#hockey').html(`${hockeyData[id]} <br><br>`)
 // }
 
 
-// function resizeAllGridItems() {
-//     allItems = document.getElementsByClassName("newscard");
-//     for (x = 0; x < allItems.length; x++) {
-//         resizeGridItem(allItems[x]);
-//     }
-// }
-// function resizeGridItem(item) {
-//     try {
-//         grid = document.getElementById('articles')
-//         rowHeight = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-auto-rows'));
-//         rowGap = parseInt(window.getComputedStyle(grid).getPropertyValue('grid-row-gap'));
-//         rowSpan = Math.ceil((item.querySelector('.content').getBoundingClientRect().height + rowGap) / (rowHeight + rowGap));
-//         item.style.gridRowEnd = "span " + rowSpan;   
-//     } catch (error) {
-//         console.log(error);
-//     }
-// }
 
-var url = ' http://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
-          'q=NHL&' +
-          'from=2020-10-20&' +
-          'sortBy=popularity&' +
-          'apiKey=a42e7594bbe2463589399dec9e9f0c01';
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
 
-var req = new Request(url);
 
-fetch(req)
-    .then(function(response) {
-        console.log(response.json());
-    })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

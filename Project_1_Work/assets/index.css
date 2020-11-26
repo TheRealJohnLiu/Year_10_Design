@@ -1,194 +1,223 @@
-/* 
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
+/*
+* Made by Erik Terwan
+* 24th of November 2015
+* MIT License
+*
+*
+* If you are thinking of using this in
+* production code, beware of the browser
+* prefixes.
+*/
 
- /* cool colours, ["02010a","04052e","140152","22007c","0d00a4"] */
+/* cool colours, ["02010a","04052e","140152","22007c","0d00a4"] */
 
- body
- {
-   margin: 0;
-   padding: 40px;
-   
-   /* make it look decent enough */
-   background: #B8E1FF !IMPORTANT;
-   color: #232323;
-   font-family: "Avenir Next", "Avenir", sans-serif;
- }
- 
- #menubob
- {
-   display: block;
-   position: fixed;
-   top: 50px;
-   left: 50px;
-   
-   z-index: 1;
-   
-   -webkit-user-select: none;
-   user-select: none;
- }
- 
- #menubob a
- {
-   text-decoration: none;
-   color: #232323;
-   
-   transition: color 0.3s ease;
- }
- 
- #menubob a:hover
- {
-   color: tomato;
- }
- 
- 
- #menubob input
- {
-   display: block;
-   width: 40px;
-   height: 32px;
-   position: absolute;
-   top: -7px;
-   left: -5px;
-   
-   cursor: pointer;
-   
-   opacity: 0; /* hide this */
-   z-index: 2; /* and place it over the hamburger */
-   
-   -webkit-touch-callout: none;
- }
- 
- /*
-  * Just a quick hamburger
-  */
- #menubob span
- {
-   display: block;
-   width: 33px;
-   height: 4px;
-   margin-bottom: 5px;
-   margin-left: 0px;
-   position: relative;
-   
-   background: #232323;
-   border-radius: 3px;
-   
-   z-index: 1;
-   
-   transform-origin: 4px 0px;
-   
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-               background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-               opacity 0.55s ease;
- }
- 
- #menubob span:first-child
- {
-   transform-origin: 0% 0%;
- }
- 
- #menubob span:nth-last-child(2)
- {
-   transform-origin: 0% 100%;
- }
- 
- /* 
-  * Transform all the slices of hamburger
-  * into a crossmark.
-  */
- #menubob input:checked ~ span
- {
-   opacity: 1;
-   transform: rotate(45deg) translate(-2px, -1px);
-   background: #232323;
- }
- 
- /*
-  * But let's hide the middle one.
-  */
- #menubob input:checked ~ span:nth-last-child(3)
- {
-   opacity: 0;
-   transform: rotate(0deg) scale(0.2, 0.2);
- }
- 
- /*
-  * Ohyeah and the last one should go the other direction
-  */
- #menubob input:checked ~ span:nth-last-child(2)
- {
-   transform: rotate(-45deg) translate(0, -1px);
- }
- 
- /*
-  * Make this absolute positioned
-  * at the top left of the screen
-  */
- #menus
- {
-   position: absolute;
-   width: 300px;
-   margin: -100px 0 0 -50px;
-   height: 4000%;
-   padding: 50px;
-   padding-top: 125px;
-   
-   background: #E8AEB7;
-   list-style-type: none;
-   -webkit-font-smoothing: antialiased;
-   /* to stop flickering of text in safari */
-   
-   transform-origin: 0% 0%;
-   transform: translate(-100%, 0);
-   
-   transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
- }
- 
- #menus li
- {
-   padding: 10px 0;
-   font-size: 22px;
- }
- 
- /*
-  * And let's slide it in from the left
-  */
- #menubob input:checked ~ ul
- {
-   transform: none;
- }
+body
+{
+  margin: 0;
+  padding: 40px;
+  
+  /* make it look decent enough */
+  background: #B8E1FF !IMPORTANT;
+  color: #232323;
+  font-family: "Avenir Next", "Avenir", sans-serif;
+}
 
- .topright {
+#news {
+  text-align: center;
+  text-transform: capitalize;
+}
+
+#news div{
+  /* article */
+  width: 300px;
+  margin: 24px;
+  display: inline-block;
+}
+
+#news div img {
+  width: 100%;
+  border-radius: 12px;
+  height: 200px;
+  object-fit: cover;
+}
+
+.hidden {
+  display: none;
+}
+
+.my-1 {
+  overflow: hidden;
+  white-space: nowrap; /* Don't forget this one */
+  text-overflow: ellipsis; 
+}
+
+#menubob
+{
+  display: block;
+  position: fixed;
+  top: 50px;
+  left: 50px;
+  
+  z-index: 1;
+  
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#menubob a
+{
+  text-decoration: none;
+  color: #232323;
+  
+  transition: color 0.3s ease;
+}
+
+#menubob a:hover
+{
+  color: tomato;
+}
+
+
+#menubob input
+{
+  display: block;
+  width: 40px;
+  height: 32px;
+  position: absolute;
+  top: -7px;
+  left: -5px;
+  
+  cursor: pointer;
+  
+  opacity: 0; /* hide this */
+  z-index: 2; /* and place it over the hamburger */
+  
+  -webkit-touch-callout: none;
+}
+
+/*
+* Just a quick hamburger
+*/
+#menubob span
+{
+  display: block;
+  width: 33px;
+  height: 4px;
+  margin-bottom: 5px;
+  margin-left: 0px;
+  position: relative;
+  
+  background: #232323;
+  border-radius: 3px;
+  
+  z-index: 1;
+  
+  transform-origin: 4px 0px;
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+  background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
+  opacity 0.55s ease;
+}
+
+#menubob span:first-child
+{
+  transform-origin: 0% 0%;
+}
+
+#menubob span:nth-last-child(2)
+{
+  transform-origin: 0% 100%;
+}
+
+/*
+* Transform all the slices of hamburger
+* into a crossmark.
+*/
+#menubob input:checked ~ span
+{
+  opacity: 1;
+  transform: rotate(45deg) translate(-2px, -1px);
+  background: #232323;
+}
+
+/*
+* But let's hide the middle one.
+*/
+#menubob input:checked ~ span:nth-last-child(3)
+{
+  opacity: 0;
+  transform: rotate(0deg) scale(0.2, 0.2);
+}
+
+/*
+* Ohyeah and the last one should go the other direction
+*/
+#menubob input:checked ~ span:nth-last-child(2)
+{
+  transform: rotate(-45deg) translate(0, -1px);
+}
+
+/*
+* Make this absolute positioned
+* at the top left of the screen
+*/
+#menus
+{
+  position: absolute;
+  width: 300px;
+  margin: -100px 0 0 -50px;
+  height: 4000%;
+  padding: 50px;
+  padding-top: 125px;
+  
+  background: #E8AEB7;
+  list-style-type: none;
+  -webkit-font-smoothing: antialiased;
+  /* to stop flickering of text in safari */
+  
+  transform-origin: 0% 0%;
+  transform: translate(-100%, 0);
+  
+  transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+}
+
+#menus li
+{
+  padding: 10px 0;
+  font-size: 22px;
+}
+
+/*
+* And let's slide it in from the left
+*/
+#menubob input:checked ~ ul
+{
+  transform: none;
+}
+
+.topright {
   position: fixed;
   top: 8px;
   right: 16px;
-  font-size: 14px; */
- }
+  font-size: 14px;
+}
 
-  .bob {
-    top: 100px;
-    position: absolute;
-    left: 50%;
-    transform: translate(-50%,0);
-    width: 500px;
-
-  }
+.bob {
+  top: 100px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,0);
+  width: 800px;
   
-  .bob img {
-    width: 50%;
-    display: inline-block;
-  }
+}
 
-  .bob span {
-    font-size: 20px;
-    width: 40%;
-    display: inline-block;
-  }
+.bob img {
+  width: 50%;
+  display: inline-block;
+}
+
+.bob span {
+  font-size: 30px;
+  width: 40%;
+  display: inline-block;
+}
