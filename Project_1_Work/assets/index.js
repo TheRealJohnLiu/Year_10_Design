@@ -39,102 +39,48 @@ function showNews(id) {
 }
 
 //---------------------------------------------------------------------------------
+
+
 // hockey()
-// async function hockey() {
-//   var url = 'https://statsapi.web.nhl.com/api/v1/teams';
+
+window.nhlData1 = {}
+
+nhl()
+async function nhl() {
+  var url = 'https://statsapi.web.nhl.com/api/v1/teams';
   
-//   var req = new Request(url);
-//   response = await fetch(req);
-//   response = await response.json()
-
-//   buildHockey(response.name)
-// }
-
-// function buildHockey(name) {
-//   console.log(name);
-//   hockeyData = {}
-//   for (let i = 0; i < teams.length; i++) {
-//     const name = name[i];
-//     var a = document.createElement('div')
-//     hockeyData[i] = name.id
-//     a.innerHTML = `
-//       <button data-toggle="modal" data-target="#exampleModal" onclick="showHockey('${i}')" class="btn btn-light my-1" type="button" >${teams.name}</button>
-//       <br>
-//     `
-//     // <div>The Flash/div>
-
-//     document.getElementById('hockey').appendChild(a) //// :D 
-
-//   }
-// }
-
-// function showockey(id) {
-//   $('#hockey').html(`${hockeyData[id]} <br><br>`)
-// }
-
-
-
-$('#myModal').on('shown.bs.modal', function () {
-  $('#myInput').trigger('focus')
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  var req = new Request(url);
+  response = await fetch(req);
+  response = await response.json()
+
+  console.log(response);
+  for (let i = 0; i < response.teams.length; i++) {
+    const element = response.teams[i];
+
+    nhlData1[element.id] = element
+    // element.name, element.id, element.abbreviation
+
+    myElement = document.createElement('div')
+    myElement.classList.add('divthingy')
+    myElement.innerHTML = `
+    <button class="teambtn" onclick="showTeamData('${element.id}')">${element.name}</button>
+    `
+    // <a href="link">text</a>
+
+    $('#roster').get(0).appendChild(myElement)
+    
+  }
+}
+
+function showTeamData(id) {
+  // Toggle modal
+  $('#hockey').modal('toggle')
+
+  $("#hockeystuff").html(`
+  
+    ${nhlData1[id].officialSiteUrl}
+    ${nhlData1[id].shortName}
+  
+  `)
+
+}

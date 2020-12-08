@@ -221,3 +221,12 @@ body
   width: 40%;
   display: inline-block;
 }
+
+.teambtn {
+  display: inline-block;
+  margin: 8px;
+}
+
+.divthingy {
+  display: inline-block;
+}
