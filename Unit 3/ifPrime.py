@@ -60,4 +60,3 @@ if __name__ == '__main__':
     prime(22553);
     prime(1187);
   
-# This code is contributed by 29AjayKumar
