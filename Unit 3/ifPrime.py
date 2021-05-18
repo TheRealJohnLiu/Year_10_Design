@@ -49,7 +49,8 @@ def prime(n):
               
 # Driver code
 if __name__ == '__main__':
-  
+    
+    #Use prime function to see if what type of number it is
     # Entered number should be greater
     # than 300 to avoid Convergence of
     # second factor to 1
